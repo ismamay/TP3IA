@@ -15,9 +15,38 @@
         <maven.compiler.target>21</maven.compiler.target>
         <maven.compiler.source>21</maven.compiler.source>
         <junit.version>5.13.2</junit.version>
+        <langchain4j.version>1.13.0</langchain4j.version>
     </properties>
 
+    <dependencyManagement>
+        <dependencies>
+           <dependency>
+                <groupId>dev.langchain4j</groupId>
+               <artifactId>langchain4j-bom</artifactId>
+              <version>${langchain4j.version}</version>
+               <type>pom</type>
+               <scope>import</scope>
+          </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-google-ai-gemini</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-jdk14</artifactId>
+            <version>2.0.17</version>
+        </dependency>
+
+
+
         <dependency>
             <groupId>jakarta.enterprise</groupId>
             <artifactId>jakarta.enterprise.cdi-api</artifactId>
