@@ -1,14 +1,19 @@
 package ht.ueh.mbds.ismael_romelus.tp3_ismael_romelus.resource;
 
+import ht.ueh.mbds.ismael_romelus.tp3_ismael_romelus.llm.LlmClientForGuideTouristique;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 
+@RequestScoped
 @Path("/guide")
 public class GuideTouristiqueResource {
-
+    @Inject
+    private LlmClientForGuideTouristique llmClient;
     /**
      * Retourne les informations touristiques d'une ville ou d'un pays au format JSON.
      *
@@ -18,7 +23,7 @@ public class GuideTouristiqueResource {
     @GET
     @Path("lieu/{lieu}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String[] endroitsDeVisite(@PathParam("lieu") String lieu) {
-        return new String[]{lieu};
+    public String endroitsDeVisite(@PathParam("lieu") String lieu) {
+        return llmClient.donnerInfos(lieu);
     }
 }
